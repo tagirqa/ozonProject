@@ -17,6 +17,7 @@ public class BaseSteps {
 
         driver.manage().window().maximize();
         driver.get("http://www.ozon.ru/");
+        driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
         driver.manage().timeouts().pageLoadTimeout(10, TimeUnit.SECONDS);
     }
 

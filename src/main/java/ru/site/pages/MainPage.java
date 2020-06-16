@@ -7,4 +7,9 @@ public class MainPage extends BasePage {
 
     @FindBy(xpath = "//input[@name='search']")
     public WebElement searchField;
+
+    @Override
+    public WebElement getField(String name) throws Exception {
+        return null;
+    }
 }
