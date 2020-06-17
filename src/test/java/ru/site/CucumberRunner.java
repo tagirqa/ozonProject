@@ -9,8 +9,9 @@ import org.junit.runner.RunWith;
 
         glue = {"ru.site.steps"},
         features = {"src/test/resources"},
-        tags = {"@all"},
-        plugin = {"ru.site.utils.MyOwnAllure"}
+        tags = {"@firstTest"},
+        plugin = {"ru.site.utils.MyOwnAllure",
+        "pretty"}
 )
 
 public class CucumberRunner {

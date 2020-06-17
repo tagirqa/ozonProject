@@ -9,7 +9,7 @@ public class MainPage extends BasePage {
     public WebElement searchField;
 
     @Override
-    public WebElement getField(String name) throws Exception {
-        return null;
+    public WebElement getFieldName(String name) throws Exception {
+        return getField(name, "ru.site.pages.MainPage");
     }
 }

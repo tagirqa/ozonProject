@@ -90,7 +90,7 @@
 
                     <argLine>
                         -javaagent:"${settings.localRepository}/org/aspectj/aspectjweaver/${aspectj.version}/aspectjweaver-${aspectj.version}.jar"
-                        -Dcucumber.options="--tags @all"
+
                     </argLine>
                     <systemProperties>
                         <property>
