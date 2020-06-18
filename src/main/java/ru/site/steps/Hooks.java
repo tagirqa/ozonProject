@@ -5,6 +5,8 @@ import cucumber.api.java.Before;
 import ru.site.product.VirtualBasket;
 import ru.site.utils.ReportHelper;
 
+import java.util.ArrayList;
+
 public class Hooks {
     @Before
     public void setUp(){
@@ -12,11 +14,12 @@ public class Hooks {
     }
 
     @After
-    public void afterEach(){
+    public void Products(){
         VirtualBasket.getBasket().forEach(x-> ReportHelper.addTextAttach(x.getName() + " цена:" + x.getPrice()));
+        VirtualBasket.setBasket(new ArrayList<>());
     }
-
+    @After
     public void tearDown(){
-
+        BaseSteps.tearDown();
     }
 }

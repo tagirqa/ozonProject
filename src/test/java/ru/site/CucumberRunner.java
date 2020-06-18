@@ -9,7 +9,7 @@ import org.junit.runner.RunWith;
 
         glue = {"ru.site.steps"},
         features = {"src/test/resources"},
-        tags = {"@secondTest"},
+        tags = {"@all"},
         plugin = {"ru.site.utils.MyOwnAllure",
         "pretty"}
 )

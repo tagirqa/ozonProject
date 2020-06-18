@@ -23,4 +23,11 @@ public class CartSteps {
     public void ClearCart(){
         Assert.assertTrue("не очищена", cartPage.checkOutProductCart());
     }
+
+    @When("проверка надписи Ваша корзина \"(.*)\"")
+    public void checkCountProducts(String text){
+        Assert.assertEquals("надпись не соответствует!", cartPage.checkCountCartProducts(), text);
+        cartPage.checkCountCartProducts();
+    }
+
 }

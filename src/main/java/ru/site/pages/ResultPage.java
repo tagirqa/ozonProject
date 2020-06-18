@@ -12,8 +12,6 @@ import java.util.List;
 
 public class ResultPage extends BasePage {
 
-
-
     @FindBy(xpath = "//input[@qa-id='range-to'][1]")
     @FieldName(name = "максимальная цена")
     public WebElement priceMaxField;
@@ -50,13 +48,10 @@ public class ResultPage extends BasePage {
     public String priceXpath = "./div/div/div/following-sibling::div/following-sibling::div//span";
     public String waitMaxPriceXpath = "//span[contains(text(), 'до 10')]";
 
-
-
     public void createList(){
         wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(productsXpath)));
         products = DriverManager.getDriver().findElements(By.xpath(productsXpath));
     }
-
 
     public void selectBrand(String text){
         WebElement button = DriverManager.getDriver().findElement(By.xpath(xpathBrand));
@@ -72,7 +67,6 @@ public class ResultPage extends BasePage {
             return !count.equals(element.getText());
         });
     }
-
 
     @Override
     public WebElement getFieldName(String name) throws Exception {

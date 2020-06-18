@@ -10,8 +10,6 @@ import ru.site.pages.ResultPage;
 import ru.site.product.Product;
 import ru.site.product.VirtualBasket;
 
-
-
 import static ru.site.steps.BaseSteps.basePage;
 
 public class ResultSteps {
@@ -42,17 +40,14 @@ public class ResultSteps {
 
     }
 
-
     @When("включаем высокий рейтинг")
     public void highRatingOn() {
-//        resultPage.scrollElement(resultPage.buttonHighRating);
         resultPage.wait.until(ExpectedConditions.elementToBeClickable(resultPage.buttonHighRating)).click();
         resultPage.wait.until(ExpectedConditions.elementToBeClickable(By.xpath(resultPage.ratingWaitXpath)));
     }
 
     @When("включаем NFC")
     public void nfcOn() {
-//        resultPage.scrollElement(resultPage.checkboxNFC);
         resultPage.wait.until(ExpectedConditions.elementToBeClickable(resultPage.checkboxNFC)).click();
         resultPage.wait.until(ExpectedConditions.elementToBeClickable(By.xpath(resultPage.nfcXpath)));
     }
@@ -85,16 +80,19 @@ public class ResultSteps {
                     System.out.println("нечетный товар отсутствует, добавляю следующий четный");
                     resultPage.products.get(i + 1).findElement(By.xpath(".//div[contains(text(),'В корзину')]")).click();
                 }
-
-                WebElement element = resultPage.products.get(i);
-                String name = element.findElement(By.xpath("." + resultPage.nameProductXpath)).getText();
-                String price = element.findElement(By.xpath(resultPage.priceXpath)).getText();
-                VirtualBasket.getBasket().add(new Product(name, price));
+                waitRefresh(i, x);
                 x++;
             }
-            resultPage.waitElementRefreshing(resultPage.cart, Integer.toString(x));
             if (x == 8) break;
         }
+    }
+
+    public void waitRefresh(int i, int x) {
+        resultPage.waitElementRefreshing(resultPage.cart, Integer.toString(x));
+        WebElement element = resultPage.products.get(i);
+        String name = element.findElement(By.xpath("." + resultPage.nameProductXpath)).getText();
+        String price = element.findElement(By.xpath(resultPage.priceXpath)).getText();
+        VirtualBasket.getBasket().add(new Product(name, price));
     }
 
     @When("добавляем все четные товары в корзину")
@@ -111,18 +109,9 @@ public class ResultSteps {
                     System.out.println("товар недоступен");
 
                 }
-                resultPage.waitElementRefreshing(resultPage.cart, Integer.toString(x));
-                WebElement element = resultPage.products.get(i);
-                String name = element.findElement(By.xpath("." + resultPage.nameProductXpath)).getText();
-                String price = element.findElement(By.xpath(resultPage.priceXpath)).getText();
-                VirtualBasket.getBasket().add(new Product(name, price));
+                waitRefresh(i, x);
                 x++;
-
             }
-
-
         }
     }
-
-
 }
