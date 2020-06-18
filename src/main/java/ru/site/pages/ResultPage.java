@@ -4,7 +4,6 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.ui.ExpectedConditions;
-import org.openqa.selenium.support.ui.WebDriverWait;
 import ru.site.annotation.FieldName;
 import ru.site.utils.DriverManager;
 
@@ -38,15 +37,23 @@ public class ResultPage extends BasePage {
     @FindBy(xpath = "//a[@href='/cart']//span[1]")
     public WebElement cart;
 
+    @FindBy(xpath = "//a[@href='/cart']")
+    public WebElement cartButton;
+
     public List<WebElement> products = new ArrayList<>();
-
     public String productsXpath = "//div[contains(@style, 'grid-template')]//div[@style='grid-column-start: span 12;']";
+    public String waitBrand = "//span[contains(text(), 'Бренды: %s')]";
+    public String ratingWaitXpath = "(//span[contains(text(), 'Высокий рейтинг')])[2]";
+    public String nfcXpath = "//span[contains(text(), 'Беспроводные технологии: NFC')]";
+    public String xpathBrand = "(//div[contains(text(), 'Бренды')]//..//div/following::input[@type='checkbox'])[1]/..";
+    public String nameProductXpath = "//div[@style='width: 50%; max-width: 50%; flex: 0 0 50%;']//a";
+    public String priceXpath = "./div/div/div/following-sibling::div/following-sibling::div//span";
+    public String waitMaxPriceXpath = "//span[contains(text(), 'до 10')]";
 
-    String waitBrand = "//span[contains(text(), 'Бренды: %s')]";
 
-    String xpathBrand = "(//div[contains(text(), 'Бренды')]//..//div/following::input[@type='checkbox'])[1]/..";
 
     public void createList(){
+        wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(productsXpath)));
         products = DriverManager.getDriver().findElements(By.xpath(productsXpath));
     }
 

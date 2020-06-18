@@ -18,7 +18,7 @@ import java.util.Arrays;
 import java.util.List;
 
 public abstract class BasePage {
-    public WebDriverWait wait = new WebDriverWait(DriverManager.getDriver(), 30);
+    public WebDriverWait wait = new WebDriverWait(DriverManager.getDriver(), 25);
     public Actions actions = new Actions(DriverManager.getDriver());
 
 
@@ -53,7 +53,7 @@ public abstract class BasePage {
         waitElementClickable(element);
         for (int i = 6; i > 0; i--) {
             element.sendKeys(Keys.BACK_SPACE);
-            if (i == 1) element.sendKeys(price);
+            if (i == 1) element.sendKeys(price + Keys.ENTER);
         }
     }
 

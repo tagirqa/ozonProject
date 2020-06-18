@@ -2,6 +2,8 @@ package ru.site.steps;
 
 import cucumber.api.java.After;
 import cucumber.api.java.Before;
+import ru.site.product.VirtualBasket;
+import ru.site.utils.ReportHelper;
 
 public class Hooks {
     @Before
@@ -10,7 +12,11 @@ public class Hooks {
     }
 
     @After
+    public void afterEach(){
+        VirtualBasket.getBasket().forEach(x-> ReportHelper.addTextAttach(x.getName() + " цена:" + x.getPrice()));
+    }
+
     public void tearDown(){
-        BaseSteps.tearDown();
+
     }
 }

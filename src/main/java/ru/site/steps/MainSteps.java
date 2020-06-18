@@ -10,7 +10,9 @@ public class MainSteps {
     MainPage mainPage = new MainPage();
 
     @When("вводим в поисковую строку \"(.*)\"")
-    public void inputSearch(String string){
+    public void inputSearch(String string) {
         mainPage.searchField.sendKeys(string + Keys.ENTER);
     }
+
+
 }
